@@ -67,8 +67,8 @@ print_test_case "Case 4: Existed COURSE_ID env var"
 echo $USER_PASS | sudo -S sleep 1 && su -l myuser -c "printenv" > $OUTPUT_FILE
 print_terminal_output
 
-if ! grep -q "COURSE_ID=__REPO_NAME__" "$OUTPUT_FILE"; then
-  >&2 printf "Missing environment variable COURSE_ID with value '__REPO_NAME__'"
+if ! grep -q "COURSE_ID=DevOpsTheHardWay" "$OUTPUT_FILE"; then
+  >&2 printf "Missing environment variable COURSE_ID with value 'DevOpsTheHardWay'"
   exit 1
 fi
 
