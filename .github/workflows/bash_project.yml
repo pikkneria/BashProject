@@ -1,0 +1,71 @@
+name: Bash Project CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install tools
+        run: |
+          sudo apt update
+          sudo apt install -y bash expect lsof
+
+      - name: Run Tests
+        run: |
+          if [ ! -f /home/runner/work/BashProject/BashProject/bash_project/.bash_profile ]; then
+            echo "Error: .bash_profile not found"
+            exit 1
+          fi
+
+          OUTPUT=$(bash /home/runner/work/BashProject/BashProject/bash_project/.bash_profile)
+          echo "Script output:"
+          echo "$OUTPUT"
+
+          if [[ $OUTPUT == *"Hello "* ]]; then
+            echo "Test 1: Hello message - Passed"
+          else
+            echo "Error: 'Hello' message not found in script output"
+            exit 1
+          fi
+
+          if [[ $OUTPUT == *"DevOpsTheHardWay"* ]]; then
+            echo "Test 2: COURSE_ID variable - Passed"
+          else
+            echo "Error: COURSE_ID variable not found in script output"
+            exit 1
+          fi
+
+          if [ -d /home/runner/tmp ]; then
+              echo "Test 3: tmp directory exists - Passed"
+          else
+              echo "Error: tmp directory does not exist"
+              exit 1
+          fi
+
+          touch /home/runner/tmp/test.txt
+          bash /home/runner/work/BashProject/BashProject/bash_project/.bash_profile
+          if [ ! -f /home/runner/tmp/test.txt ]; then
+              echo "Test 4: tmp directory cleaned - Passed"
+          else
+              echo "Error: tmp directory was not cleaned"
+              exit 1
+          fi
+
+          if ss -lntu | grep -q ':8080'; then
+            echo "Port 8080 is in use, attempting to kill process..."
+            if ! kill $(lsof -t -i:8080); then
+              echo "Error: Failed to kill process on port 8080"
+              exit 1
+            else
+                echo "Test 5: Process on port 8080 killed - Passed"
+            fi
+          else
+            echo "Test 5: No process found on port 8080 - Passed"
+          fi
+
+          echo "All tests passed!"
