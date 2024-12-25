@@ -44,7 +44,7 @@ umask 006
 
 export PATH="$PATH:$HOME/usercommands"
 
-date -Iseconds -u
+date +%Y-%m-%d %H:%M:%S
 
 alias ltxt='ls *.txt'
 
