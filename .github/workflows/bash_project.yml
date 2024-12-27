@@ -13,11 +13,11 @@ jobs:
           sudo apt install -y bash expect
       - name: Run Tests
         run: |
-          if [ ! -f BashProject/.bash_profile ]; then
+          if [ ! -f /home/runner/work/BashProject/.bash_profile ]; then
             echo "Error: .bash_profile not found"
             exit 1
           fi
-          OUTPUT=$(bash BashProject/.bash_profile)
+          OUTPUT=$(bash /home/runner/work/BashProject/.bash_profile)
           echo "Script output:"
           echo "$OUTPUT"
           if [[ $OUTPUT =~ "Hello" ]]; then
