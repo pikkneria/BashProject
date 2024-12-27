@@ -1,0 +1,29 @@
+name: Bash Project Tests
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install tools
+        run: |
+          sudo apt update
+          sudo apt install -y bash expect
+      - name: Run Tests
+        run: |
+          if [ ! -f bash_project/.bash_profile ]; then
+            echo "Error: .bash_profile not found"
+            exit 1
+          fi
+          OUTPUT=$(bash bash_project/.bash_profile)
+          echo "Script output:"
+          echo "$OUTPUT"
+          if [[ $OUTPUT =~ "Hello" ]]; then
+            echo "Test 1: Passed"
+          else
+            echo "Error: 'Hello' message not found in script output"
+            exit 1
+          fi
+          echo "All tests passed!"
