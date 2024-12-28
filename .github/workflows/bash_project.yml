@@ -1,4 +1,4 @@
-name: Bash Project Tests
+name: Bash Project roei 
 on:
   push:
     branches: [ main ]
@@ -13,11 +13,11 @@ jobs:
           sudo apt install -y bash expect
       - name: Run Tests
         run: |
-          if [ ! -f /BashProject/.bash_profile ]; then
+          if [ ! -f /Desktop/BashProject/.bash_profile ]; then
             echo "Error: .bash_profile not found"
             exit 1
           fi
-          OUTPUT=$(bash /BashProject/.bash_profile)
+          OUTPUT=$(bash /Desktop/BashProject/.bash_profile)
           echo "Script output:"
           echo "$OUTPUT"
           if [[ $OUTPUT =~ "Hello" ]]; then
@@ -27,3 +27,4 @@ jobs:
             exit 1
           fi
           echo "All tests passed!"
+
