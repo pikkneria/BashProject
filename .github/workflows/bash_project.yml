@@ -18,7 +18,7 @@ jobs:
           pwd
           ls -l
           if [ ! -f ./.bash_profile ]; then
-            echo "Error: .bash_profile not found😔"
+            echo "Error: .bash_profile not found"
             exit 1
           fi
           OUTPUT=$(bash ./.bash_profile)
@@ -27,7 +27,7 @@ jobs:
           if [[ $OUTPUT =~ "Hello" ]]; then
             echo "Test 1: Passed"
           else
-            echo "Error: 'Hello' not found in script output😔"
+            echo "Error: 'Hello' not found in script output"
             exit 1
           fi
-          echo "the test is work🫡"
+          echo "the test is work"
