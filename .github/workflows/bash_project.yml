@@ -22,12 +22,12 @@ jobs:
             exit 1
           fi
           OUTPUT=$(bash ./.bash_profile)
-          echo "Script output:"
+          echo "Script output👇"
           echo "$OUTPUT"
           if [[ $OUTPUT =~ "Hello" ]]; then
-            echo "Test 1: Passed"
+            echo "Test 1: Passed🫡"
           else
             echo "Error: 'Hello' not found in script output"
             exit 1
           fi
-          echo "the test is work"
+          echo "the test is work💪"
