@@ -10,15 +10,15 @@ jobs:
       - name: Install tools
         run: |
           sudo apt update
-          sudo apt install -y bash expect
-      - name: Make script executable
+          sudo apt install -y bash
+      - name: insert +x to .bash_proile
         run: chmod +x ./.bash_profile
       - name: Run Tests
         run: |
           pwd
           ls -l
           if [ ! -f ./.bash_profile ]; then
-            echo "Error: .bash_profile not found"
+            echo "Error: .bash_profile not found😔"
             exit 1
           fi
           OUTPUT=$(bash ./.bash_profile)
@@ -27,7 +27,7 @@ jobs:
           if [[ $OUTPUT =~ "Hello" ]]; then
             echo "Test 1: Passed"
           else
-            echo "Error: 'Hello' not found in script output"
+            echo "Error: 'Hello' not found in script output😔"
             exit 1
           fi
-          echo "All tests passed!"
+          echo "the test is work🫡"

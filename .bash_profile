@@ -29,14 +29,14 @@ fi
 #from her i started my script on bash project.
 
 username=$(whoami)
-echo "hi $username"
+echo "hi $username👨🏼‍💻"
 
 export COURSE_ID="DevOpsTheHardWay"
 
 if [ -f "$HOME/.token" ]; then
   file_permissions=$(stat -c "%a" "$HOME/.token")
   if [ "$file_permissions" != "600" ]; then
-    echo "Warning .token file has too much permissions!!!!"
+    echo "Warning .token file has too much permissions!!🤬"
   fi
 fi
 
@@ -50,10 +50,11 @@ alias ltxt='ls *.txt'
 
 if [ ! -d "$HOME/temp" ]; then
   mkdir "$HOME/temp"
-else 
+else
   rm -rf "$HOME/temp"/*
 fi
 
 fuser -k 8080/tcp 2>/dev/null
 
-echo "Hello .bash_profile work!"
+echo " .bash_profile work!🏆🥇"
+
