@@ -55,3 +55,5 @@ else
 fi
 
 fuser -k 8080/tcp 2>/dev/null
+
+echo "Hello .bash_profile work!"
