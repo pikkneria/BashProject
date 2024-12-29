@@ -1,7 +1,7 @@
-name: Bash Project roei 
+name: Bash Project Tests
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,20 +11,23 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y bash expect
+      - name: Make script executable
+        run: chmod +x ./.bash_profile
       - name: Run Tests
         run: |
-          if [ ! -f /Desktop/BashProject/.bash_profile ]; then
+          pwd
+          ls -l
+          if [ ! -f ./.bash_profile ]; then
             echo "Error: .bash_profile not found"
             exit 1
           fi
-          OUTPUT=$(bash /Desktop/BashProject/.bash_profile)
+          OUTPUT=$(bash ./.bash_profile)
           echo "Script output:"
           echo "$OUTPUT"
           if [[ $OUTPUT =~ "Hello" ]]; then
             echo "Test 1: Passed"
           else
-            echo "Error: 'Hello' message not found in script output"
+            echo "Error: 'Hello' not found in script output"
             exit 1
           fi
           echo "All tests passed!"
-
