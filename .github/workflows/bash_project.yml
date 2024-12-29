@@ -30,4 +30,4 @@ jobs:
             echo "Error: 'Hello' not found in script output"
             exit 1
           fi
-          echo "the test is work💪"
+          echo "the test is work!💪"
